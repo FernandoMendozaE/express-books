@@ -6,3 +6,5 @@ async function main() {
 }
 
 main();
+
+console.log("Prueba Huawei");
