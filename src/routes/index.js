@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const fs = require("fs"); // Guardar archivo
+const uuid = require("uuid/v4");
 
 // read file
 const json_books = fs.readFileSync("src/books.json", "utf-8");
@@ -24,6 +25,7 @@ router.post("/new-entry", (req, res) => {
     return;
   }
   let newBook = {
+    id: uuid(),
     title,
     author,
     image,
@@ -36,6 +38,8 @@ router.post("/new-entry", (req, res) => {
 
   // write file
   fs.writeFileSync("src/books.json", json_books, "utf-8");
+
+  res.redirect("/");
 
   res.send("received");
 });
